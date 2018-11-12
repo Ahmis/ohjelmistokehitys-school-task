@@ -1,6 +1,14 @@
 const Joi = require( 'joi' );
 const express = require( 'express' );
 const mysql = require( 'mysql' );
+const path = require('path');
+
+const app = express();
+
+app.use( express.json() );
+
+// Serve the static files from the React app.
+app.use( express.static( path.join( __dirname, 'client/build' ) ) );
 
 // Create database connection.
 const db = mysql.createConnection({
@@ -20,12 +28,8 @@ db.connect( ( error ) => {
 	console.log( 'MySQL connected...' );
 });
 
-const app = express();
-
-app.use( express.json() );
-
 // PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen( port, () => console.log( `Listening on port ${port}...` ) );
 
 // app.get();
@@ -47,7 +51,7 @@ const courses = [
 
 
 // Show products.
-app.get( '/', ( req, res ) => {
+app.get( '/api/products/', ( req, res ) => {
 	let sql = 'SELECT * FROM products';
 	let query = db.query( sql, ( err, results ) => {
 		if ( err ) {

@@ -37,18 +37,6 @@ app.listen( port, () => console.log( `Listening on port ${port}...` ) );
 // app.put();
 // app.delete();
 
-const courses = [
-	{
-		id: 1, name: 'course1'
-	},
-	{
-		id: 2, name: 'course2'
-	},
-	{
-		id: 3, name: 'course3'
-	}
-];
-
 
 // Show products.
 app.get( '/api/products/', ( req, res ) => {

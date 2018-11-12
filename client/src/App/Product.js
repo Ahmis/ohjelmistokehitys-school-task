@@ -17,6 +17,7 @@ class Product extends Component {
 		const { onDelete, name } = this.props;
 		onDelete(name);
 	}
+	
 
 	onEdit() {
 		this.setState( { isEdit: true } );

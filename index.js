@@ -20,6 +20,7 @@ const db = mysql.createConnection({
 	socketPath : '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
+// Connect to MySQL.
 db.connect( ( error ) => {
 	if ( error ) {
 		throw error;
@@ -30,11 +31,6 @@ db.connect( ( error ) => {
 // PORT
 const port = process.env.PORT || 5000;
 app.listen( port, () => console.log( `Listening on port ${port}...` ) );
-
-// app.get();
-// app.post(); -- ADD
-// app.put(); -- UPDATE
-// app.delete();
 
 // Show products.
 app.get( '/api/products', ( req, res ) => {
@@ -68,7 +64,6 @@ app.post( '/api/new-product', ( req, res ) => {
 
 });
 
-
 // Remove product from db.
 app.post( '/api/delete-product', function( req, res ) {
 	let stmt = 'DELETE FROM products WHERE id = ?';
@@ -82,7 +77,6 @@ app.post( '/api/delete-product', function( req, res ) {
 	});
 });
 
-
 // Edit product.
 app.post( '/api/edit-product', function( req, res ) {
 	let stmt = 'UPDATE products SET name = ?, price = ? WHERE id = ?';
@@ -95,50 +89,4 @@ app.post( '/api/edit-product', function( req, res ) {
 		res.send( results );
 	});
 
-});
-
-
-app.put( '/api/courses/:id', ( req, res ) => {
-	const course = courses.find( c => c.id === parseInt( req.params.id ) );
-
-	if ( ! course ) {
-		res.status( 404 ).send( 'The course with the given ID was not found.' );
-	}
-
-	const { error } = validateCourse( req.body ); // result.error
-
-	if ( error ) {
-		res.status( 400 ).send( error.details[0].message );
-		return;
-	}
-
-	course.name = req.body.name;
-	res.send( course );
-
-});
-
-app.delete( '/api/courses/:id', ( req, res ) => {
-	const course = courses.find( c => c.id === parseInt( req.params.id ) );
-
-	if ( ! course ) {
-		res.status( 404 ).send( 'The course with the given ID was not found.' );
-		return;
-	}
-
-	const index = courses.indexOf( course );
-	courses.splice( index, 1 );
-
-	res.send( course );
-
-});
-
-app.get( '/api/courses/:id', ( req, res ) => {
-	const course = courses.find( c => c.id === parseInt( req.params.id ) );
-
-	if ( ! course ) {
-		res.status( 404 ).send( 'The course with the given ID was not found.' );
-		return;
-	}
-
-	res.send( course );
 });

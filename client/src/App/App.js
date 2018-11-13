@@ -14,6 +14,7 @@ class App extends Component {
 		}
 
 		this.onAdd = this.onAdd.bind( this );
+		this.onChange = this.onChange.bind( this );
 		this.onDelete = this.onDelete.bind( this );
 		this.onEditSubmit = this.onEditSubmit.bind( this );
 	}
@@ -34,6 +35,10 @@ class App extends Component {
 		});
 
 		this.setState( { products } );
+	}
+
+	onChange(e) {
+		this.setState({[e.target.name]: e.target.value});  
 	}
 
 	onDelete(name) {
@@ -71,6 +76,7 @@ class App extends Component {
 	
 				<AddProduct
 					onAdd={this.onAdd}
+					onChange={this.onChange}
 				/>
 	
 				{

@@ -14,10 +14,29 @@ class Product extends Component {
 	}
 
 	onDelete() {
-		const { onDelete, name } = this.props;
-		onDelete(name);
+		let data = {
+			id: this.props.id
+		}
+
+		fetch( '/api/delete-product', {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify( data )
+		}).then( function( response ) {
+			if ( response.status >= 400 ) {
+			  throw new Error( 'Bad response from server.' );
+			}
+			return response.json();
+		}).then(function( data ) {
+			if ( data === 'success' ) {
+				console.log( 'Product deleted.' );
+			}
+		}).catch( function( err ) {
+			console.log( err );
+		});
+
 	}
-	
+
 
 	onEdit() {
 		this.setState( { isEdit: true } );

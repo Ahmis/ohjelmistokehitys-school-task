@@ -41,10 +41,10 @@ class App extends Component {
 		this.setState({[e.target.name]: e.target.value});  
 	}
 
-	onDelete(name) {
-		const products = this.getProducts();
+	onDelete(id) {
+		const products = this.getList();
 		const filteredProducts = products.filter( product => {
-			return product.name !== name;
+			return product.id !== id;
 		})
 
 		this.setState( { products: filteredProducts } );

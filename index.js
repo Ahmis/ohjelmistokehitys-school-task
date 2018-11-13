@@ -69,6 +69,22 @@ app.post( '/api/new-product', ( req, res ) => {
 
 });
 
+
+// Remove product from db.
+app.post( '/api/delete-product', function( req, res ) {
+
+	let stmt = 'DELETE FROM products WHERE id = ?';
+	let value = req.body.id;
+
+	db.query( stmt, value, ( err, results ) => {
+		if ( err ) {
+			throw err;
+		}
+		res.send( results );
+	});
+});
+
+
 app.put( '/api/courses/:id', ( req, res ) => {
 	const course = courses.find( c => c.id === parseInt( req.params.id ) );
 

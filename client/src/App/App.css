@@ -1,3 +1,7 @@
+body {
+	font-size: 16px;
+}
+
 .App {
   text-align: center;
 }
@@ -29,4 +33,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.product-form {
+	margin-bottom: 2rem;
+}
+
+.product-form label {
+	margin-right: 0.5rem;
+}
+
+.product-form input {
+	margin-right: 1rem;
 }

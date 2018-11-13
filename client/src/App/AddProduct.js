@@ -19,12 +19,10 @@ class AddProduct extends Component {
 	onSubmit( event ) {
 		event.preventDefault();
 
-		var data = {
+		let data = {
 			name: this.state.name,
 			price: this.state.price
 		}
-
-		// console.log( data );
 
 		fetch( '/api/new-product', {
 			method: 'POST',
@@ -36,7 +34,7 @@ class AddProduct extends Component {
 			}
 			return response.json();
 		}).then( function( data ) {
-			console.log( data )
+			console.log( 'Product added succesfully.' )
 		}).catch( function( err ) {
 			console.log( err )
 		});
@@ -46,9 +44,11 @@ class AddProduct extends Component {
 		return (
 			<div>
 				<h2>Add Product</h2>
-				<form onSubmit={this.onSubmit} method="POST">
-					<input type="text" placeholder="Name" name="name" onChange={this.onChange} ref={nameInput => this.nameInput = nameInput} />
-					<input type="number" placeholder="Price" name="price" onChange={this.onChange} ref={priceInput => this.priceInput = priceInput} />
+				<form className="product-form" onSubmit={this.onSubmit} method="POST">
+					<label htmlFor="name">Name</label>
+					<input id="name" type="text" name="name" onChange={this.onChange} ref={nameInput => this.nameInput = nameInput} />
+					<label htmlFor="price">Price</label>
+					<input id="price" type="number" name="price" onChange={this.onChange} ref={priceInput => this.priceInput = priceInput} />
 					<button>Add</button>
 				</form>
 			</div>

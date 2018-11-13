@@ -76,7 +76,7 @@ render() {
 	const { name, price } = this.props;
 
 	return (
-			<div>
+			<React.Fragment>
 				{
 					this.state.isEdit ? (
 						<form onSubmit={this.onEditSubmit}>
@@ -85,15 +85,15 @@ render() {
 							<button>Save</button>
 						</form>
 					) : (
-					<div>
-						<span>{name}</span> | <span>{price}</span>
-						<button onClick={this.onEdit}>Edit</button>
-						<button onClick={this.onDelete}>Delete</button>
-					</div>
+					<tr>
+						<td>{name}</td>
+						<td>{price}</td>
+						<td><button class="edit-button" type="button" onClick={this.onEdit}>Edit</button>
+						<button class="delete-button" type="button" onClick={this.onDelete}>Delete</button></td>
+					</tr>
 					)
 				}
-
-			</div>
+			</React.Fragment>
 		);
   }
 }

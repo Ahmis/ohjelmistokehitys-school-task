@@ -1,5 +1,7 @@
 body {
 	font-size: 16px;
+	padding: 3rem;
+	font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .App {
@@ -45,4 +47,59 @@ body {
 
 .product-form input {
 	margin-right: 1rem;
+	padding: 0.33rem 0.5rem;
 }
+
+h2 {
+	margin-top: 4rem;
+}
+
+table {
+	width: 100%;
+	margin-top: 4rem;
+}
+
+th {
+	text-align: left;
+	background: #ebebeb;
+}
+
+th, td {
+	padding: 0.5rem 0.8rem;
+}
+
+td {
+	border-bottom: 1px solid #ebebeb;
+}
+
+button {
+	padding: 0.5rem 0.8rem;
+	cursor: pointer;
+	background: #444;
+	color: #fff;
+	border: 0;
+	font-weight: bold;
+	margin-right: 1rem;
+}
+
+button:hover {
+	background: #505050;
+}
+
+.edit-button {
+	background: #168401;
+}
+
+.edit-button:hover {
+	background: #1e9d06;
+}
+
+.delete-button {
+	background: #a01313;
+}
+
+.delete-button:hover {
+	background: #bd1818;
+}
+
+

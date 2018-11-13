@@ -45,9 +45,9 @@ class AddProduct extends Component {
 			<div>
 				<h2>Add Product</h2>
 				<form className="product-form" onSubmit={this.onSubmit} method="POST">
-					<label htmlFor="name">Name</label>
+					<label htmlFor="name">Name:</label>
 					<input id="name" type="text" name="name" onChange={this.onChange} ref={nameInput => this.nameInput = nameInput} />
-					<label htmlFor="price">Price</label>
+					<label htmlFor="price">Price:</label>
 					<input id="price" type="number" name="price" onChange={this.onChange} ref={priceInput => this.priceInput = priceInput} />
 					<button>Add</button>
 				</form>

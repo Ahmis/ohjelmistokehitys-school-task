@@ -73,24 +73,32 @@ class App extends Component {
 		return (
 			<div>
 				<h1>Products Manager</h1>
-	
+				
 				<AddProduct
 					onAdd={this.onAdd}
 					onChange={this.onChange}
 				/>
-	
-				{
-					this.state.products.map( product => {
-						return (
-							<Product
-							key={product.name}
-							{...product}
-							onDelete={this.onDelete}
-							onEditSubmit={this.onEditSubmit}
-							/>
-						);
-					})
-				}
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>Price</th>
+						<th></th>
+					</thead>
+					<tbody>
+					{
+						this.state.products.map( product => {
+							return (
+								<Product
+								key={product.name}
+								{...product}
+								onDelete={this.onDelete}
+								onEditSubmit={this.onEditSubmit}
+								/>
+							);
+						})
+					}
+					</tbody>
+				</table>
 			</div>
 		);
 	  }

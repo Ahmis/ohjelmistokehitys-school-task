@@ -45,7 +45,29 @@ class Product extends Component {
 	onEditSubmit(event) {
 		event.preventDefault();
 
-		this.props.onEditSubmit(this.nameInput.value, this.priceInput.value, this.props.name);
+		let data = {
+			id: this.props.id,
+			name: this.nameInput.value,
+			price: this.priceInput.value
+		}
+
+		fetch( '/api/edit-product', {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify( data )
+		}).then( function( response ) {
+			if ( response.status >= 400 ) {
+			  throw new Error( 'Bad response from server.' );
+			}
+			return response.json();
+		}).then(function( data ) {
+			if ( data === 'success' ) {
+				console.log( 'Product deleted.' );
+			}
+		}).catch( function( err ) {
+			console.log( err );
+		});
+
 
 		this.setState( { isEdit: false } );
 	}

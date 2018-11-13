@@ -50,7 +50,6 @@ app.get( '/api/products', ( req, res ) => {
 
 // Add new product to db.
 app.post( '/api/new-product', ( req, res ) => {
-
 	let product = {
 		name: req.body.name,
 		price: req.body.price
@@ -72,7 +71,6 @@ app.post( '/api/new-product', ( req, res ) => {
 
 // Remove product from db.
 app.post( '/api/delete-product', function( req, res ) {
-
 	let stmt = 'DELETE FROM products WHERE id = ?';
 	let value = req.body.id;
 
@@ -82,6 +80,21 @@ app.post( '/api/delete-product', function( req, res ) {
 		}
 		res.send( results );
 	});
+});
+
+
+// Edit product.
+app.post( '/api/edit-product', function( req, res ) {
+	let stmt = 'UPDATE products SET name = ?, price = ? WHERE id = ?';
+	let values = [req.body.name, req.body.price, req.body.id];
+
+	db.query( stmt, values, ( err, results ) => {
+		if ( err ) {
+			throw err;
+		}
+		res.send( results );
+	});
+
 });
 
 

@@ -1,4 +1,3 @@
-const Joi = require( 'joi' );
 const express = require( 'express' );
 const mysql = require( 'mysql' );
 const path = require('path');
@@ -33,13 +32,12 @@ const port = process.env.PORT || 5000;
 app.listen( port, () => console.log( `Listening on port ${port}...` ) );
 
 // app.get();
-// app.post();
-// app.put();
+// app.post(); -- ADD
+// app.put(); -- UPDATE
 // app.delete();
 
-
 // Show products.
-app.get( '/api/products/', ( req, res ) => {
+app.get( '/api/products', ( req, res ) => {
 	let sql = 'SELECT * FROM products';
 	let query = db.query( sql, ( err, results ) => {
 		if ( err ) {
@@ -50,21 +48,25 @@ app.get( '/api/products/', ( req, res ) => {
 	});
 });
 
-app.post( '/api/courses', ( req, res ) => {
-	
-	const { error } = validateCourse( req.body ); // result.error
+// Add new product to db.
+app.post( '/api/new-product', ( req, res ) => {
 
-	if ( error ) {
-		res.status( 400 ).send( error.details[0].message );
-		return;
-	}
-
-	const course = {
-		id: courses.length + 1,
-		name: req.body.name
+	let product = {
+		name: req.body.name,
+		price: req.body.price
 	};
-	courses.push( course );
-	res.send( course );
+
+	let stmt = 'INSERT INTO products ( name, price ) VALUES ( ?, ? )';
+	let values = [ product.name, product.price ];
+
+	db.query( stmt, values, ( err, results ) => {
+		if ( err ) {
+			throw err;
+		}
+
+		res.send( results );
+	});
+
 });
 
 app.put( '/api/courses/:id', ( req, res ) => {
@@ -100,14 +102,6 @@ app.delete( '/api/courses/:id', ( req, res ) => {
 	res.send( course );
 
 });
-
-function validateCourse( course ) {
-	const schema = {
-		name: Joi.string().min(3).required()
-	}
-
-	return Joi.validate( course, schema );
-}
 
 app.get( '/api/courses/:id', ( req, res ) => {
 	const course = courses.find( c => c.id === parseInt( req.params.id ) );

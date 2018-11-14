@@ -61,7 +61,7 @@ class Product extends Component {
 			}
 			return response.json();
 		}).then(function( data ) {
-				console.log( 'Product deleted.' );
+				console.log( 'Product saved.' );
 		}).catch( function( err ) {
 			console.log( err );
 		});
@@ -77,11 +77,13 @@ render() {
 			<React.Fragment>
 				{
 					this.state.isEdit ? (
+						<tr><td>
 						<form onSubmit={this.onEditSubmit}>
 							<input placeholder="Name" defaultValue={name} ref={nameInput => this.nameInput = nameInput} />
 							<input placeholder="Price" defaultValue={price} ref={priceInput => this.priceInput = priceInput} />
 							<button>Save</button>
 						</form>
+						</td></tr>
 					) : (
 					<tr>
 						<td>{name}</td>

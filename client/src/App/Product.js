@@ -18,6 +18,8 @@ class Product extends Component {
 			id: this.props.id
 		}
 
+		this.props.onDelete( data.id );
+
 		fetch( '/api/delete-product', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
@@ -28,9 +30,7 @@ class Product extends Component {
 			}
 			return response.json();
 		}).then(function( data ) {
-			if ( data === 'success' ) {
 				console.log( 'Product deleted.' );
-			}
 		}).catch( function( err ) {
 			console.log( err );
 		});

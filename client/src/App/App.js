@@ -49,14 +49,18 @@ class App extends Component {
 		this.setState({[e.target.name]: e.target.value});  
 	}
 
-	onDelete(id) {
-		console.log(id);
-		// const products = this.getList();
-		// const filteredProducts = products.filter( product => {
-		// 	return product.id !== id;
-		// })
+	onDelete( id ) {
 
-		// this.setState( { products: filteredProducts } );
+		// Get products.
+		const products = this.getProducts();
+
+		// Find product we want to delete from list.
+		const filteredProducts = products.filter( product => {
+			return product.id !== id;
+		});
+
+		// Show product list without deleted item.
+		this.setState( { products: filteredProducts } );
 	}
 
 	onEditSubmit(name, price, originalName) {

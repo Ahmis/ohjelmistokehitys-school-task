@@ -27,7 +27,6 @@ class App extends Component {
 	}
 
 	onAdd( name, price ) {
-
 		// Get products.
 		const products = this.getProducts();
 
@@ -45,12 +44,11 @@ class App extends Component {
 		this.setState( { products } );
 	}
 
-	onChange(e) {
+	onChange( e ) {
 		this.setState({[e.target.name]: e.target.value});  
 	}
 
 	onDelete( id ) {
-
 		// Get products.
 		const products = this.getProducts();
 
@@ -63,17 +61,20 @@ class App extends Component {
 		this.setState( { products: filteredProducts } );
 	}
 
-	onEditSubmit(name, price, originalName) {
+	onEditSubmit( name, price, originalName ) {
+		// Get products.
 		let products = this.getProducts();
+
+		// Change product's data.
 		products = products.map( product => {
 			if ( product.name === originalName ) {
 				product.name = name;
 				product.price = price;
 			}
-
 			return product;
 		});
 
+		// Show product list with modified item.
 		this.setState( { products } );
 	}
 	

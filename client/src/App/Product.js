@@ -51,6 +51,8 @@ class Product extends Component {
 			price: this.priceInput.value
 		}
 
+		this.props.onEditSubmit( this.nameInput.value, this.priceInput.value, this.props.name );
+
 		fetch( '/api/edit-product', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},

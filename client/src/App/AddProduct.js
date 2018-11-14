@@ -19,6 +19,10 @@ class AddProduct extends Component {
 	onSubmit( event ) {
 		event.preventDefault();
 
+		this.props.onAdd(this.nameInput.value, this.priceInput.value);
+			this.nameInput.value = '';
+			this.priceInput.value = '';
+
 		let data = {
 			name: this.state.name,
 			price: this.state.price

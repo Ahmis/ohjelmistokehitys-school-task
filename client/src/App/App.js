@@ -26,14 +26,22 @@ class App extends Component {
 		.then( products => this.setState( { products } ) )
 	}
 
-	onAdd(name, price) {
+	onAdd( name, price ) {
+
+		// Get products.
 		const products = this.getProducts();
 
+		// Set id for our new item.
+		const id =  products[products.length - 1].id + 1;
+
+		// Push new product to our array.
 		products.push({
+			id,
 			name,
 			price
 		});
 
+		// Update state so that it contains our new product.
 		this.setState( { products } );
 	}
 
@@ -68,6 +76,10 @@ class App extends Component {
 	// Fetch the list of products on first mount.
 	componentDidMount() {
 		this.getList();
+	}
+
+	getProducts() {
+		return this.state.products;
 	}
 
 	render() {

@@ -61,9 +61,7 @@ class Product extends Component {
 			}
 			return response.json();
 		}).then(function( data ) {
-			if ( data === 'success' ) {
 				console.log( 'Product deleted.' );
-			}
 		}).catch( function( err ) {
 			console.log( err );
 		});

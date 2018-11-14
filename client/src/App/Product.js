@@ -88,8 +88,8 @@ render() {
 					<tr>
 						<td>{name}</td>
 						<td>{price}</td>
-						<td><button class="edit-button" type="button" onClick={this.onEdit}>Edit</button>
-						<button class="delete-button" type="button" onClick={this.onDelete}>Delete</button></td>
+						<td><button className="edit-button" type="button" onClick={this.onEdit}>Edit</button>
+						<button className="delete-button" type="button" onClick={this.onDelete}>Delete</button></td>
 					</tr>
 					)
 				}

@@ -42,12 +42,13 @@ class App extends Component {
 	}
 
 	onDelete(id) {
-		const products = this.getList();
-		const filteredProducts = products.filter( product => {
-			return product.id !== id;
-		})
+		console.log(id);
+		// const products = this.getList();
+		// const filteredProducts = products.filter( product => {
+		// 	return product.id !== id;
+		// })
 
-		this.setState( { products: filteredProducts } );
+		// this.setState( { products: filteredProducts } );
 	}
 
 	onEditSubmit(name, price, originalName) {
@@ -80,9 +81,11 @@ class App extends Component {
 				/>
 				<table>
 					<thead>
-						<th>Name</th>
-						<th>Price</th>
-						<th></th>
+						<tr>
+							<th>Name</th>
+							<th>Price</th>
+							<th></th>
+						</tr>
 					</thead>
 					<tbody>
 					{

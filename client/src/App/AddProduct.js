@@ -2,26 +2,33 @@ import React, { Component } from 'react';
 
 class AddProduct extends Component {
 	constructor( props ) {
-		super(props);
+		super( props );
+
+		// Initialize state.
 		this.state = {
 			name: '',
 			price: '',
 		}
 
+		// Bindings.
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
 	}
 
-	onChange(e) {
+	onChange( e ) {
 		this.setState({[e.target.name]: e.target.value});  
 	}
 
+	// When new product is submitted.
 	onSubmit( event ) {
 		event.preventDefault();
 
-		this.props.onAdd(this.nameInput.value, this.priceInput.value);
-			this.nameInput.value = '';
-			this.priceInput.value = '';
+		// Send name and price to onAdd.
+		this.props.onAdd( this.nameInput.value, this.priceInput.value );
+
+		// Set input values empty after submit.
+		this.nameInput.value = '';
+		this.priceInput.value = '';
 
 		let data = {
 			name: this.state.name,
@@ -37,7 +44,7 @@ class AddProduct extends Component {
 			  throw new Error( 'Bad response from server.' );
 			}
 			return response.json();
-		}).then( function( data ) {
+		}).then( function() {
 			console.log( 'Product added succesfully.' )
 		}).catch( function( err ) {
 			console.log( err )

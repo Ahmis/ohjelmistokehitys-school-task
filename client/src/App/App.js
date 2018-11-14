@@ -4,15 +4,15 @@ import Product from './Product';
 import AddProduct from './AddProduct';
 
 class App extends Component {
-
-	// Initialize the state.
 	constructor( props ) {
 		super( props );
 
+		// Initialize the state.
 		this.state = {
 		  products: []
 		}
 
+		// Bindings.
 		this.onAdd = this.onAdd.bind( this );
 		this.onChange = this.onChange.bind( this );
 		this.onDelete = this.onDelete.bind( this );

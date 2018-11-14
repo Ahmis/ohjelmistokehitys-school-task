@@ -4,15 +4,18 @@ class Product extends Component {
 	constructor(props) {
 		super(props);
 
+		// Initialize state.
 		this.state = {
 			isEdit: false
 		};
 
+		// Bindings.
 		this.onDelete = this.onDelete.bind(this);
 		this.onEdit = this.onEdit.bind(this);
 		this.onEditSubmit = this.onEditSubmit.bind(this);
 	}
 
+	// When product's delete button is clicked.
 	onDelete() {
 		let data = {
 			id: this.props.id
@@ -29,7 +32,7 @@ class Product extends Component {
 			  throw new Error( 'Bad response from server.' );
 			}
 			return response.json();
-		}).then(function( data ) {
+		}).then( function() {
 				console.log( 'Product deleted.' );
 		}).catch( function( err ) {
 			console.log( err );
@@ -37,11 +40,12 @@ class Product extends Component {
 
 	}
 
-
+	// When editing product.
 	onEdit() {
 		this.setState( { isEdit: true } );
 	}
 
+	// When product edit is saved (submitted).
 	onEditSubmit(event) {
 		event.preventDefault();
 
@@ -62,15 +66,15 @@ class Product extends Component {
 			  throw new Error( 'Bad response from server.' );
 			}
 			return response.json();
-		}).then(function( data ) {
+		}).then( function() {
 				console.log( 'Product saved.' );
 		}).catch( function( err ) {
 			console.log( err );
 		});
 
-
 		this.setState( { isEdit: false } );
 	}
+
 
 render() {
 	const { name, price } = this.props;
